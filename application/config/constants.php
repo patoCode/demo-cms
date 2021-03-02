@@ -89,22 +89,14 @@ define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 define('SERVER_LDAP', '10.10.0.17');
 define('PORT_SERVER_LDAP', '389');
 define('COMPANY_DOMAIN', '@company.com');
-
 define('COMPANY_SMTP', 'XXXX');
 define('COMPANY_SMTP_PORT', '123');
-
-
-
 /* CONSTANTES DE EMPRESA */
 define('COMPANY_NAME', 'COMPANY');
 define('COMPANY_COPY', '&copy;2020 - '.COMPANY_NAME);
-define('COMPANY_INTRANET', 'COMUNIDAD');
+define('COMPANY_INTRANET', 'INTRANET');
 define('COMPANY_MAIL', 'http://correo.company.com');
-
-
-
 /* CONSTANTES */
-
 define('PATH_IMGS', 'public/imgs/');
 define('PATH_IMG_HOME', 'public/imgs/home/');
 define('PATH_ARCHIVOS', 'public/archivos/');

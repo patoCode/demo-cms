@@ -3,7 +3,7 @@
 :root {
   --main-bg-color: #3be8b0;
   --link-color: #1aafd0;
-  --link-hover-color: #6a67ce; 
+  --link-hover-color: #6a67ce;
   --body-main-color: #232323;
 }
 @font-face {
@@ -100,7 +100,7 @@ a:focus {
   min-width: 180px;
 }
 body > section {
-  padding: 50px 0;
+  padding: 20px 0;
 }
 .turquoise,
 .green-sea,

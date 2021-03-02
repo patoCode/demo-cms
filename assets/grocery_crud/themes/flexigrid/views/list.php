@@ -61,14 +61,12 @@
 						foreach($row->action_urls as $action_unique_id => $action_url){
 							$action = $actions[$action_unique_id];
 					?>
-							<a href="<?php echo $action_url; ?>" class="btn blue-cms"> 
-							<i class="<?php echo $action->css_class; ?>" title="<?php echo $action->label?>"><?php
+							<a href="<?php echo $action_url; ?>" class="<?php echo $action->css_class; ?> crud-action" title="<?php echo $action->label?>"><?php
 								if(!empty($action->image_url))
 								{
 									?><img src="<?php echo $action->image_url; ?>" alt="<?php echo $action->label?>" /><?php
 								}
-							?> </i>
-							</a>
+							?></a>
 					<?php }
 					}
 					?>
