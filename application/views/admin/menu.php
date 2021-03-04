@@ -7,7 +7,7 @@
 			<span class="icon-bar"></span>
 		</button>
 		<a class="navbar-brand" href="<?php echo base_url() ?>Administrar/archivo">
-            <img src="<?php echo base_url() ?>public/imgs/my-logo.png" 
+            <img src="<?php echo base_url() ?>public/imgs/my-logo.png"
 				alt="<?php echo COMPANY_NAME;?>" width="58" class="img-responsive img-circle" style="background:white;">
 		</a>
 	</div>
@@ -15,7 +15,7 @@
 		<ul class="nav navbar-nav" style="margin-top:0;">
 			<li>
 				<a href="<?php echo base_url() ?>home" target="_blank" style="color:white;">
-					<i class="fa fa-laptop"></i>Comunidad
+					<i class="fa fa-laptop"></i><?php echo COMPANY_INTRANET; ?>
 				</a>
 			</li>
 			<li>
@@ -35,7 +35,7 @@
 				<?php endforeach; ?>
 				</ul>
 			</li>
-
+			<?php if($this->session->userdata('logged_in')){ ?>
 			<li>
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 					<i class="fa fa-user"></i>
@@ -46,6 +46,7 @@
 					<li><a href="<?php echo base_url() ?>Login/logOut"><i class="fa fa-power-off"></i> Salir</a></li>
 			    </ul>
 			</li>
+			<?php } ?>
 		</ul>
 	</div>
 	</div>

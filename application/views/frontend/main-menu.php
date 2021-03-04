@@ -13,6 +13,7 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
+		<?php if($this->session->userdata('logged_in')){ ?>
 		<li>
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 				<img src="<?php echo base_url().PATH_FOTO_FUNCIONARIO.$this->session->userdata('foto_usuario');?>" alt="" width="20" class="img-circle">
@@ -28,6 +29,7 @@
 				<li><a href="<?php echo base_url() ?>Login/logOut"><i class="fa fa-power-off"></i> Salir</a></li>
 		    </ul>
 		</li>
+		<?php } ?>
 		<?php if(count($menu) > 0):	?>
 		<li>
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">

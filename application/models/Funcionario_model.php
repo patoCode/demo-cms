@@ -7,16 +7,16 @@ class Funcionario_model extends CI_Model
 	}
 	public function getAll()
 	{
-		$this->db->select('id_funcionario,nombres,CONCAT(nombres," ",CONCAT(apellido_pat," ",apellido_mat)) as nombre_completo, apellido_pat, apellido_mat, nombres, cumpleanio, cargo, email_ende, jefe_inmediato, path_foto, interno, celular, lugar_trabajo,unidad_organizacional',FALSE);
+		$this->db->select('id_funcionario,nombres,CONCAT(nombres," ",CONCAT(apellido_pat," ",apellido_mat)) as nombre_completo, apellido_pat, apellido_mat, nombres, cumpleanio, cargo, email_corp, jefe_inmediato, path_foto, interno, celular, lugar_trabajo,unidad_organizacional',FALSE);
 		$this->db->from('com_funcionario');
-		
+
 		$this->db->order_by('nombres', 'desc');
 		$query = $this->db->get();
 		return $query->result();
 	}
 	public function getPagination($limit =12, $offset = 0)
 	{
-		$this->db->select('id_funcionario,CONCAT(nombres," ",CONCAT(apellido_pat," ",apellido_mat)) as nombre_completo, apellido_pat, apellido_mat, nombres, cumpleanio, cargo, email_ende, jefe_inmediato, path_foto, interno, celular, lugar_trabajo,unidad_organizacional',FALSE);
+		$this->db->select('id_funcionario,CONCAT(nombres," ",CONCAT(apellido_pat," ",apellido_mat)) as nombre_completo, apellido_pat, apellido_mat, nombres, cumpleanio, cargo, email_corp, jefe_inmediato, path_foto, interno, celular, lugar_trabajo,unidad_organizacional',FALSE);
 		$this->db->from('com_funcionario');
 		$this->db->order_by('apellido_pat', 'asc');
 		$this->db->limit($limit,$offset);
@@ -25,7 +25,7 @@ class Funcionario_model extends CI_Model
 	}
 	public function getFuncionario($id)
 	{
-		$this->db->select('id_funcionario,nombres, apellido_pat, apellido_mat, cumpleanio, cargo, email_ende, jefe_inmediato, path_foto, interno, celular, lugar_trabajo,unidad_organizacional');
+		$this->db->select('id_funcionario,nombres, apellido_pat, apellido_mat, cumpleanio, cargo, email_corp, jefe_inmediato, path_foto, interno, celular, lugar_trabajo,unidad_organizacional');
 		$this->db->from('com_funcionario');
 		$this->db->where('id_funcionario', $id);
 		$this->db->limit(1);
@@ -68,7 +68,7 @@ class Funcionario_model extends CI_Model
 	}
 	public function getId($like)
 	{
-		$this->db->like('email_ende', $like, 'after');
+		$this->db->like('email_corp', $like, 'after');
 		$this->db->order_by('id_funcionario', 'asc');
 		$query = $this->db->get('com_funcionario');
 		return $query;

@@ -93,7 +93,6 @@ class Administrar extends CI_Controller
 		$this->load->view('admin/administrar', $data);
 	}
 
-
 	public function multimedia($bandera)
 	{
 		$data['title'] ="Informacion Compartida";
@@ -486,7 +485,7 @@ class Administrar extends CI_Controller
 				 		'apellido_mat',
 				 		'telefono_fijo',
 				 		'interno',
-				 		'email_ende',
+				 		'email_corp',
 				 		'unidad_organizacional',
 				 		'estado'
 					)
@@ -496,7 +495,7 @@ class Administrar extends CI_Controller
 					->display_as('telefono_fijo','Telefono Fijo')
 					->display_as('celular','Celular')
 					->display_as('interno','Interno')
-					->display_as('email_ende','Email ENDE')
+					->display_as('email_corp','Email '.COMPANY_NAME)
 					->display_as('email_personal','E-mail Personal')
 					->display_as('email_personal_opc','E-mail Personal 2')
 					->display_as('profesion','Profesión')
@@ -516,7 +515,7 @@ class Administrar extends CI_Controller
 				 		'telefono_fijo',
 				 		'celular',
 				 		'interno',
-				 		'email_ende',
+				 		'email_corp',
 				 		'email_personal',
 				 		'email_personal_opc',
 				 		'profesion',
@@ -531,20 +530,14 @@ class Administrar extends CI_Controller
 					);
 		$crud->required_fields(
 						'nombres',
-				 		// 'apellido_pat',
-				 		// 'apellido_mat',
-				 		// 'telefono_fijo',
-				 		// 'celular',
-				 		'email_personal',
 				 		'interno',
-				 		'email_ende',
+				 		'email_corp',
 				 		'profesion',
 				 		'cargo',
 				 		'unidad_organizacional',
 				 		// 'jefe_inmediato',
 				 		'lugar_trabajo',
 				 		'cumpleanio',
-				 		'path_foto',
 				 		'tipo_sangre',
 				 		'estado'
 					);
@@ -896,7 +889,7 @@ class Administrar extends CI_Controller
 		$menu               = $this->menu->getPrivilegios($this->session->userdata('id_cargo'));
 		$data['menu']       = $menu;
 		$image_crud = new image_CRUD();
-		
+
 		$image_crud->set_primary_key_field('id_archivo');
 		$image_crud->set_url_field('path_archivo');
 
@@ -1271,4 +1264,109 @@ class Administrar extends CI_Controller
 		}
 		return '"chart":'.trim(json_encode($chart),"[]").', "data":'.json_encode($data);
 	}
+
+
+	/* NUEVO */
+	public function buzon()
+	{
+		$data['title'] ="Buzon de sugerencias";
+		$data['title_page'] ="Administracion de Sugerencias";
+		$menu = $this->menu->getPrivilegios($this->session->userdata('id_cargo'));
+		$data['menu'] = $menu;
+		$crud = new grocery_CRUD();
+		$crud->set_table('buzon')
+			 ->set_subject('Buzon')
+			 ->columns(
+				 		'sugerencia'
+
+				 	   )
+			 ->display_as('sugerencia','Sugenrecias porfavor')
+			;
+
+		$crud->fields(
+						'sugerencia',
+					);
+		$crud->required_fields(
+					'sugerencia',
+
+					);
+
+		$_POST['tabla']     = 'buzon';
+		$_POST['categoria_'] ='Administrar/buzon';
+		$crud->callback_after_insert(array($this, 'log_after_insert'));
+		$crud->callback_before_delete(array($this, 'log_before_delete'));
+
+		if($this->session->userdata('ver') == 'no'):
+			$crud->unset_read();
+		endif;
+		if($this->session->userdata('editar') == 'no'):
+			$crud->unset_edit();
+		endif;
+		if($this->session->userdata('borrar') == 'no'):
+			$crud->unset_delete();
+		endif;
+		if($this->session->userdata('crear') == 'no'):
+			$crud->unset_add();
+		endif;
+
+
+		$output = $crud->render();
+		$data['output'] = $output;
+		$data['plantilla'] = 'buzon';
+		$this->load->view('admin/administrar', $data);
+	}
+
+	public function sistemas()
+	{
+		$data['title'] ="Buzon de sugerencias";
+		$data['title_page'] ="Administracion de Sugerencias";
+		$menu = $this->menu->getPrivilegios($this->session->userdata('id_cargo'));
+		$data['menu'] = $menu;
+		$crud = new grocery_CRUD();
+		$crud->set_table('com_sistema')
+			 ->set_subject('Buzon')
+			 ->columns(
+				 		'sistema','icono','link'
+
+				 	   )
+			 ->display_as('sistema','Nombre de sistema')
+			 ->display_as('icono','Icono')
+			 ->display_as('link','URL DESTINO')
+			;
+
+		$crud->fields(
+					'sistema','icono','link'
+					);
+		$crud->required_fields(
+					'sistema','icono','link'
+
+					);
+
+		$_POST['tabla']     = 'com_sistema';
+		$_POST['categoria_'] ='Administrar/com_sistema';
+		$crud->callback_after_insert(array($this, 'log_after_insert'));
+		$crud->callback_before_delete(array($this, 'log_before_delete'));
+
+		if($this->session->userdata('ver') == 'no'):
+			$crud->unset_read();
+		endif;
+		if($this->session->userdata('editar') == 'no'):
+			$crud->unset_edit();
+		endif;
+		if($this->session->userdata('borrar') == 'no'):
+			$crud->unset_delete();
+		endif;
+		if($this->session->userdata('crear') == 'no'):
+			$crud->unset_add();
+		endif;
+
+
+		$output = $crud->render();
+		$data['output'] = $output;
+		$data['plantilla'] = 'sistema';
+		$this->load->view('admin/administrar', $data);
+	}
+
+
+
 }

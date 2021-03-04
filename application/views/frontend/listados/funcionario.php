@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <h1><i class="fa fa-users"></i> Funcionarios</h1>
-                <p>Funcionarios de ENDE CORPORACIÓN</p>
+                <p><?php echo COMPANY_INTRANET; ?></p>
             </div>
             <div class="col-sm-6">
                 <!-- <ul class="breadcrumb pull-right">

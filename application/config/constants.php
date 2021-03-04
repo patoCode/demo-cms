@@ -85,6 +85,12 @@ define('EXIT_DATABASE', 8); // database error
 define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
+
+define('CMS_LOGIN', false);
+/* if login true */
+define('INIT_PAGE', 'Home');
+define('INIT_LOGIN', 'Login');
+
 /* CONSTANTES DE SERVIDOR */
 define('SERVER_LDAP', '10.10.0.17');
 define('PORT_SERVER_LDAP', '389');

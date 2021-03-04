@@ -29,7 +29,7 @@
 							echo $cumpleanios;
 						?>
 						<br>
-					<strong>Correo:</strong> <?php echo $funcionario->email_ende ?><br>
+					<strong>Correo:</strong> <?php echo $funcionario->email_corp ?><br>
 					<strong>Unidad:</strong> <?php echo $funcionario->unidad_organizacional ?><br>
 					<strong>Cargo:</strong> <?php echo $funcionario->cargo ?><br>
 					<strong>Jefe Inmediato:</strong> <?php echo $funcionario->jefe_inmediato ?><br>

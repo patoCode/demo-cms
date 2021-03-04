@@ -81,7 +81,7 @@ class Login extends CI_Controller
 					);
 		$this->bitacora->insert($data);
 		session_destroy();
-		$data['title']= 'Portal de la Comunidad | ENDE CORPORACI&Oacute;N';
+		$data['title']= COMPANY_INTRANET;
 		$this->load->view('index',$data);
 	}
 

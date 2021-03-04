@@ -3,12 +3,12 @@
 	<?php $this->load->view('frontend/main-menu'); ?>
 	<?php $this->load->view('frontend/bienvenida'); ?>
 	<!-- INICIO CATEGORIAS -->
-	<section id="services" class="emerald">
+	<section id="services" class="">
         <div class="container">
             <div class="row">
-				<?php 
-				
-				for($i=0;$i<count($categorias);$i++): ?>  
+				<?php
+
+				for($i=0;$i<count($categorias);$i++): ?>
                 <div class="col-md-4 col-sm-6" style="margin-bottom: 30px;">
                     <div class="media">
                         <div class="pull-left">
@@ -36,7 +36,7 @@
 								if($j>=5) break;
 							endforeach;?>
 							</ul>
-                            <a href="<?php echo base_url(); ?>Listado/archivo/<?php echo $categorias[$i][0]->id_categoria; ?>" 
+                            <a href="<?php echo base_url(); ?>Listado/archivo/<?php echo $categorias[$i][0]->id_categoria; ?>"
 							    class="ver-mas ver-todos">
 								VER TODOS <i class="fa fa-angle-right"></i>
 							</a>

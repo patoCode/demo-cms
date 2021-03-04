@@ -11,9 +11,11 @@ class Login
 
 	public function check_login()
 	{
-		if(!$this->ci->session->userdata('logged_in'))
-		{
-			redirect(base_url('login'));
+		if(CMS_LOGIN){
+			if(!$this->ci->session->userdata('logged_in'))
+			{
+				redirect(base_url('login'));
+			}
 		}
 	}
 

@@ -5,7 +5,7 @@
 			<span aria-hidden="true">&times;</span>
 		</button>
 		<?php foreach ($funcionario as $funcionario): ?>
-		<h3 class="text-center" style="color:white;"> 
+		<h3 class="text-center" style="color:white;">
 			<?php echo $funcionario->nombres.' '.$funcionario->apellido_pat.' '.$funcionario->apellido_mat; ?>
 		</h3>
 	</div>
@@ -35,7 +35,7 @@
 						echo $cumpleanios;
 					?>
 					<br>
-				<b>Correo:</b> <?php echo $funcionario->email_ende ?><br>
+				<b>Correo:</b> <?php echo $funcionario->corp ?><br>
 				<b>Unidad:</b> <?php echo $funcionario->unidad_organizacional ?><br>
 				<b>Cargo:</b> <?php echo $funcionario->cargo ?><br>
 				<b>Lugar de Trabajo:</b> <?php echo $funcionario->lugar_trabajo ?><br>
@@ -50,9 +50,9 @@
 			</a>
 		</div>
 		</div>
-	</div>		
-		
-		
+	</div>
+
+
 	</div>
 </div>
 <script>
