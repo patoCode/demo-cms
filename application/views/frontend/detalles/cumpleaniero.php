@@ -35,7 +35,7 @@
 						echo $cumpleanios;
 					?>
 					<br>
-				<b>Correo:</b> <?php echo $funcionario->corp ?><br>
+				<b>Correo:</b> <?php echo $funcionario->email_corp ?><br>
 				<b>Unidad:</b> <?php echo $funcionario->unidad_organizacional ?><br>
 				<b>Cargo:</b> <?php echo $funcionario->cargo ?><br>
 				<b>Lugar de Trabajo:</b> <?php echo $funcionario->lugar_trabajo ?><br>
