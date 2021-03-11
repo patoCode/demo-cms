@@ -34,6 +34,14 @@ class Encuesta_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function getParticipacionesByIp($ip)
+    {
+        $this->db->select('id_encuesta');
+        $this->db->from('com_encuesta_usuario');
+        $this->db->where('ip', $ip);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getOpciones($id)
     {
         $this->db->from('com_encuesta_opciones');
@@ -43,7 +51,7 @@ class Encuesta_model extends CI_Model
             return $query->result();
         else
             return "0";
-        
+
     }
     public function getResults($id)
     {
@@ -55,7 +63,7 @@ class Encuesta_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
-    public function votar($id_encuesta,$opcion,$id_usuario)
+    public function votar($id_encuesta,$opcion,$id_usuario, $ip)
     {
         $data = array(
             'id_encuesta' => $id_encuesta,
@@ -63,7 +71,8 @@ class Encuesta_model extends CI_Model
         );
         $dataUsuario = array(
             'id_encuesta' => $id_encuesta,
-            'id_usuario' => $id_usuario
+            'id_usuario' => $id_usuario,
+            'ip' => $ip
         );
         if($this->db->insert('com_encuesta_votos', $data) && $this->db->insert('com_encuesta_usuario', $dataUsuario))
             return true;

@@ -17,7 +17,10 @@ class Encuestas extends CI_Controller
 		$data['elementos'] = $this->getOpciones($this->encuesta->getAll());
 		$data['resultados'] = $this->getResultados($this->encuesta->getAll());
 		/* FIN OBTENCION ENCUESTAS */
-		$participaciones = $this->encuesta->getParticipaciones($this->session->userdata('id_usuario'));
+		if(CMS_LOGIN)
+			$participaciones = $this->encuesta->getParticipaciones($this->session->userdata('id_usuario'));
+		else
+			$participaciones = $this->encuesta->getParticipacionesByIp($this->getUserIP());
 		$res = array();
 		foreach ($participaciones as $p) {
 			array_push($res,$p->id_encuesta);
@@ -51,7 +54,7 @@ class Encuestas extends CI_Controller
 		$i = 0;
 		foreach ($encuestas as $encuesta)
 		{
-			$res = $this->getJSONResults($encuesta->id_encuesta);			
+			$res = $this->getJSONResults($encuesta->id_encuesta);
 			$opciones = $this->encuesta->getOpciones($encuesta->id_encuesta);
 			if($opciones != 0)
 			{
@@ -122,17 +125,43 @@ class Encuestas extends CI_Controller
 		else{
 			return 0;
 		}
-		
+
 	}
 	public function votar()
 	{
 		$id_encuesta = $this->input->post('id_encuesta');
 		$opcion      = $this->input->post('opcion');
-		$usuario     = $this->session->userdata('id_usuario');
-		$voto        = $this->encuesta->votar($id_encuesta,$opcion,$usuario);
+		$ip = $this->getUserIP();
+		if(CMS_LOGIN){
+			$usuario     = $this->session->userdata('id_usuario');
+		}else{
+			$usuario     = "";
+		}
+		$voto        = $this->encuesta->votar($id_encuesta,$opcion,$usuario,$ip);
 		if($voto)
 			echo 1;
 		else
 			echo 0;
+	}
+	function getUserIP()
+	{
+	    $client  = @$_SERVER['HTTP_CLIENT_IP'];
+	    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+	    $remote  = $_SERVER['REMOTE_ADDR'];
+
+	    if(filter_var($client, FILTER_VALIDATE_IP))
+	    {
+	        $ip = $client;
+	    }
+	    elseif(filter_var($forward, FILTER_VALIDATE_IP))
+	    {
+	        $ip = $forward;
+	    }
+	    else
+	    {
+	        $ip = $remote;
+	    }
+
+	    return $ip;
 	}
 }
