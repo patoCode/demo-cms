@@ -1,4 +1,8 @@
 <?php
+ini_set('post_max_size',6000);
+ini_set('upload_max_filesize',6000);
+ini_set('max_input_time', 30000);
+
 /**
  * CodeIgniter
  *

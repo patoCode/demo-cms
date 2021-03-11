@@ -20,11 +20,7 @@
 				<?php echo $this->session->userdata('usuario'); ?> <span class="caret"></span>
 		    </a>
 		    <ul class="dropdown-menu">
-		    	<li>
-					<a href="<?php echo base_url() ?>funcionario/detalle/<?php echo $this->session->userdata('id_usuario'); ?>" data-toggle="modal" data-target="#myModal<?php echo $this->session->userdata('usuario'); ?>">
-						<?php echo $this->session->userdata('nombres').' '.$this->session->userdata('apellido_pat').' '.$this->session->userdata('apellido_mat'); ?>
-					</a>
-		    	</li>
+
 				<li><a href="<?php echo COMPANY_MAIL;?>" target="_blank"> <i class="fa fa-envelope-o"></i> Correo</a></li>
 				<li><a href="<?php echo base_url() ?>Login/logOut"><i class="fa fa-power-off"></i> Salir</a></li>
 		    </ul>

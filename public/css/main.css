@@ -1,6 +1,11 @@
 /*@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,300);|||*/
 /* FONTS */
 :root {
+  /* DIMENSIONES DE CONTENEDORES MAESTROS */
+  --title-padding: 10px 0;
+  --footer-padding: 5px 0;
+  --container-widget: 100px;
+  /* COLORS */
   --main-bg-color: #0085ad;
   --link-color: #1aafd0;
   --link-hover-color: #6a67ce;
@@ -19,7 +24,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
 .navbar-default{
   background-color: var(--main-bg-color)!important;
 }
@@ -1339,5 +1343,16 @@ a.blue-cms:active{
     width:32%;
   }
 }
-
-
+body > section{
+  padding:var(--title-padding);
+}
+body > section#bottom{
+  padding: var(--footer-padding);
+  color: var(--body-main-color);
+}
+.footer-links, .cumpleaneros-dia{
+  height: var(--container-widget);
+}
+.category-section{
+  padding: 30px 0;
+}

@@ -82,7 +82,7 @@ class Login extends CI_Controller
 		$this->bitacora->insert($data);
 		session_destroy();
 		$data['title']= COMPANY_INTRANET;
-		$this->load->view('index',$data);
+		redirect(base_url(),'refresh');
 	}
 
 }

@@ -3,7 +3,7 @@
 	<?php $this->load->view('frontend/main-menu'); ?>
 	<?php $this->load->view('frontend/bienvenida'); ?>
 	<!-- INICIO CATEGORIAS -->
-	<section id="services" class="">
+	<section id="services" class="category-section">
         <div class="container">
             <div class="row">
 				<?php

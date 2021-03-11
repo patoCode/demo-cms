@@ -10,6 +10,11 @@ class Administrar extends CI_Controller
 		parent::__construct();
 		$this->load->model('Usuario_model','usuario');
 		$this->load->model('Encuesta_model','encuesta');
+		if($this->session->userdata('logged_in'))
+		{
+		}else{
+			redirect(base_url(), 'location');
+		}
 
 	}
 	public function index()
@@ -898,8 +903,6 @@ class Administrar extends CI_Controller
 					->set_ordering_field('id_archivo')
 					->set_image_path(PATH_ALBUMES);
 
-
-
 		$output = $image_crud->render();
 
 		/* LOG */
@@ -1274,41 +1277,24 @@ class Administrar extends CI_Controller
 		$menu = $this->menu->getPrivilegios($this->session->userdata('id_cargo'));
 		$data['menu'] = $menu;
 		$crud = new grocery_CRUD();
-		$crud->set_table('buzon')
+		$crud->set_table('com_buzon')
 			 ->set_subject('Buzon')
-			 ->columns(
-				 		'sugerencia'
+			 ->columns('nombre','sugerencia','ip','fecha')
+			 ->display_as('sugerencia','Sugerencia')
+			 ->display_as('nombre','Nombre')
+			 ->display_as('ip','IP')
+			 ->display_as('fecha','Fecha');
 
-				 	   )
-			 ->display_as('sugerencia','Sugenrecias porfavor')
-			;
+		$crud->fields('nombre','sugerencia', 'ip','fecha');
+		$crud->required_fields('sugerencia', 'ip','fecha');
 
-		$crud->fields(
-						'sugerencia',
-					);
-		$crud->required_fields(
-					'sugerencia',
-
-					);
-
-		$_POST['tabla']     = 'buzon';
+		$_POST['tabla']     = 'com_buzon';
 		$_POST['categoria_'] ='Administrar/buzon';
 		$crud->callback_after_insert(array($this, 'log_after_insert'));
 		$crud->callback_before_delete(array($this, 'log_before_delete'));
-
-		if($this->session->userdata('ver') == 'no'):
-			$crud->unset_read();
-		endif;
-		if($this->session->userdata('editar') == 'no'):
-			$crud->unset_edit();
-		endif;
-		if($this->session->userdata('borrar') == 'no'):
-			$crud->unset_delete();
-		endif;
-		if($this->session->userdata('crear') == 'no'):
-			$crud->unset_add();
-		endif;
-
+		$crud->unset_edit();
+		$crud->unset_delete();
+		$crud->unset_add();
 
 		$output = $crud->render();
 		$data['output'] = $output;
@@ -1366,7 +1352,48 @@ class Administrar extends CI_Controller
 		$data['plantilla'] = 'sistema';
 		$this->load->view('admin/administrar', $data);
 	}
+	public function portada()
+	{
+		$data['title'] ="Slide principal";
+		$data['title_page'] ="Administracion de Portadas";
+		$menu = $this->menu->getPrivilegios($this->session->userdata('id_cargo'));
+		$data['menu'] = $menu;
+		$crud = new grocery_CRUD();
+		$crud->set_table('com_portada')
+			 ->set_subject('Portadas')
+			 ->columns('nombre','path','principal','orden')
+			 ->display_as('nombre','Nombre')
+			 ->display_as('path','Path')
+			 ->display_as('principal','Mostrar en Home')
+			 ->display_as('orden','Orden')
+			;
+		$crud->fields('nombre','path','principal','orden');
+		$crud->required_fields('path','principal','orden');
+		$crud->set_field_upload('path',PATH_PORTADAS);
 
+		$_POST['tabla']     = 'com_portada';
+		$_POST['categoria_'] ='Administrar/com_portada';
+		$crud->callback_after_insert(array($this, 'log_after_insert'));
+		$crud->callback_before_delete(array($this, 'log_before_delete'));
+
+		if($this->session->userdata('ver') == 'no'):
+			$crud->unset_read();
+		endif;
+		if($this->session->userdata('editar') == 'no'):
+			$crud->unset_edit();
+		endif;
+		if($this->session->userdata('borrar') == 'no'):
+			$crud->unset_delete();
+		endif;
+		if($this->session->userdata('crear') == 'no'):
+			$crud->unset_add();
+		endif;
+
+		$output = $crud->render();
+		$data['output'] = $output;
+		$data['plantilla'] = 'portada';
+		$this->load->view('admin/administrar', $data);
+	}
 
 
 }

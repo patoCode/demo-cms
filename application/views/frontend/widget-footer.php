@@ -21,7 +21,13 @@
 							Encuestas
 						</a>
 					</li>
-					
+					<li>
+						<a href="<?php echo base_url() ?>Buzon">
+							<i class="fa fa-inbox"></i>
+							Buzón de sugerencias
+						</a>
+					</li>
+
 				</ul>
             </div><!--/.col-md-3-->
             <div class="<?php echo $bandera; ?>">
@@ -35,19 +41,12 @@
 					</li>
 				<?php } ?>
 				</ul>
-				<form role="form" action="<?php echo base_url('Listado/buscar'); ?>" method="POST">
-                    <div class="input-group">
-                        <input type="text" class="form-control" autocomplete="off" placeholder="Busqueda..." name="busqueda">
-                        <span class="input-group-btn">
-                        	<input type="submit" class="btn blue-cms btn-color-white" value="Buscar">
-                        </span>
-                    </div>
-                </form>
+
             </div><!--/.col-md-3-->
 
             <div class="<?php echo $bandera; ?>">
 				<h4>Cumpleañeros del Mes</h4>
-				<ul class="list-unstyled footer-links" id="mensual" style="height:200px;">
+				<ul class="list-unstyled footer-links" id="mensual">
 					<?php
 						foreach ($cumpleanieros_mes as $cm):
 							$nacimiento = explode('-',$cm->cumpleanio);
@@ -75,7 +74,7 @@
 			<?php if(count($cumpleanieros_dia) > 0): ?>
             <div class="<?php echo $bandera; ?>">
 				<h4>Cumpleañeros de Hoy</h4>
-				<div id="diario" style="height:200px;">
+				<div id="diario" class="cumpleaneros-dia">
 				<?php foreach ($cumpleanieros_dia as $cd): ?>
 					<div class="media">
                         <div class="pull-left">

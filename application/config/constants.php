@@ -103,6 +103,7 @@ define('COMPANY_COPY', '&copy;2020 - '.COMPANY_NAME);
 define('COMPANY_INTRANET', 'INTRANET');
 define('COMPANY_MAIL', 'http://correo.company.com');
 /* CONSTANTES */
+define('PATH_PORTADAS', 'public/portadas/');
 define('PATH_IMGS', 'public/imgs/');
 define('PATH_IMG_HOME', 'public/imgs/home/');
 define('PATH_ARCHIVOS', 'public/archivos/');

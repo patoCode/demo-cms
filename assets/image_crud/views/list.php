@@ -6,8 +6,8 @@
 	$this->set_js('assets/image_crud/js/jquery-1.8.2.min.js');
 	$this->set_js('assets/image_crud/js/jquery-ui-1.9.0.custom.min.js');
 
-	$this->set_js('assets/image_crud/js/fineuploader-3.2.min.js');
-	
+	$this->set_js('assets/image_crud/js/jquery.fineuploader-3.5.0.min.js');
+
 	$this->set_js('assets/image_crud/js/jquery.colorbox-min.js');
 ?>
 <script>
@@ -53,7 +53,7 @@ function createUploader() {
 		},
 		validation: {
 			 allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
-		},		
+		},
 		callbacks: {
 			 onComplete: function(id, fileName, responseJSON) {
 				 loadPhotoGallery();
@@ -173,7 +173,7 @@ window.onload = createUploader;
 	<?php foreach($photos as $photo_num => $photo){?>
 			<li id="photos_<?php echo $photo->$primary_key; ?>">
 				<div class='photo-box'>
-					<a href='<?php echo $photo->image_url?>' <?php if (isset($photo->title)) {echo 'title="'.str_replace('"',"&quot;",$photo->title).'" ';}?>target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='<?php echo $photo->thumbnail_url?>' width='90' height='60' class='basic-image' /></a>
+					<a href='<?php echo $photo->image_url?>' <?php if (isset($photo->title)) {echo 'title="'.str_replace('"',"&quot;",$photo->title).'" ';}?>target='_blank' class="color-box" rel="color-box" tabindex="-1"><img src='<?php echo $photo->image_url?>' width='90' height='60' class='basic-image' /></a>
 					<?php if($title_field !== null){ ?>
 					<textarea class="ic-title-field" data-id="<?php echo $photo->$primary_key; ?>" autocomplete="off" ><?php echo $photo->$title_field; ?></textarea>
 					<div class="clear"></div><?php }?>

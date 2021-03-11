@@ -9,6 +9,7 @@ class Home extends CI_Controller
 		$this->load->model('Mensaje_model','mensaje');
 		$this->load->model('Alertas_model','alerta');
 		$this->load->model('Calendario_model','calendario');
+		$this->load->model('Portada_model', 'portada');
 	}
 	public function index()
 	{
@@ -18,7 +19,8 @@ class Home extends CI_Controller
 		$data['funcionarios'] = $this->funcionario->getAll();
 		$data['cumpleanieros_dia'] = $this->funcionario->getCumpleaneros(0);
 		$data['cumpleanieros_mes'] = $this->funcionario->getCumpleaneros(1);
-
+		$data['portada'] = $this->portada->loadHome();
+		$data['total_portadas'] = $this->portada->totalPortadas();
 		/* CATEGORIAS */
 		$categorias = $this->categoria->getHomeCategory();
 

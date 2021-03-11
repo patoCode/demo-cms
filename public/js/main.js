@@ -1,3 +1,4 @@
+var SERVER = "http://localhost/demo-cms/"
 jQuery(function($) {
 
 	//#main-slider
