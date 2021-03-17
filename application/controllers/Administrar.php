@@ -51,6 +51,7 @@ class Administrar extends CI_Controller
 			 ->display_as('icono','Icono')
 			 ->display_as('estado','Estado')
 			 ->display_as('id_padre','Superior')
+			 ->display_as('sys_cod','Código')
 			 ->display_as('in_home','Inicio?');
 		$crud->fields(
 				'categoria',
@@ -58,7 +59,8 @@ class Administrar extends CI_Controller
 				'icono',
 				'estado',
 				'id_padre',
-				'in_home'
+				'in_home',
+				'sys_cod'
 			);
 		$crud->required_fields(
 				'categoria',
@@ -147,20 +149,15 @@ class Administrar extends CI_Controller
 
 		$crud->set_field_upload('path_archivo',PATH_FILE_RRHH);
 
-		// /* RENAME IMAGE */
-		// $_POST['ruta']      = PATH_FILE_RRHH;
-		// $crud->callback_before_insert(array($this,'change_name_image'));
-		// $crud->callback_before_update(array($this,'change_name_image'));
-
 		switch ($bandera) {
 			case 1: // Musica
-				$crud->set_relation('id_categoria','com_categoria','{categoria}',array('id_categoria' => '8'));
+				$crud->set_relation('id_categoria','com_categoria','{categoria}',array('sys_cod' => 'AUD'));
 				break;
 			case 2: // Video
-				$crud->set_relation('id_categoria','com_categoria','{categoria}',array('id_categoria' => '9'));
+				$crud->set_relation('id_categoria','com_categoria','{categoria}',array('sys_cod' => 'VID'));
 				break;
 			case 3: // Diapositivas
-				$crud->set_relation('id_categoria','com_categoria','{categoria}',array('id_categoria' => '10'));
+				$crud->set_relation('id_categoria','com_categoria','{categoria}',array('sys_cod' => 'DIAP'));
 				break;
 		}
 
